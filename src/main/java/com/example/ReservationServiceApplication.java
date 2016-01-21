@@ -29,7 +29,7 @@ public class ReservationServiceApplication {
 	@Bean
 	CommandLineRunner dummyCLR(ReservationRepository reservationRepository) {
 		return args -> {
-			Stream.of("Steve", "Ashley", "Brianna", "Matthew", "Hayden", "Emma")
+			Stream.of("Trip to SFO", "Trip to ATL", "Trip to STL", "Trip to ORD", "Trip to Funkytown", "Trip to Mars")
 					.forEach(name -> reservationRepository.save(new Reservation(name)));
 			reservationRepository.findAll().forEach(System.out::println);
 		};
