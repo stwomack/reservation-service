@@ -29,7 +29,7 @@ public class ReservationServiceApplication {
 	@Bean
 	CommandLineRunner dummyCLR(ReservationRepository reservationRepository) {
 		return args -> {
-			Stream.of("Trip to SFO", "Trip to ATL", "Trip to STL", "Trip to ORD", "Trip to Funkytown", "Trip to Mars")
+			Stream.of("TripToSFO", "TripToATL", "TripToSTL", "TripToORD", "TripToFunkytown", "TripToMars")
 					.forEach(name -> reservationRepository.save(new Reservation(name)));
 			reservationRepository.findAll().forEach(System.out::println);
 		};
@@ -42,37 +42,3 @@ interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Collection<Reservation> findByReservationName(@Param("reservationName") String reservationName);
 }
 
-@Entity
-class Reservation {
-	@Id
-	@GeneratedValue
-	private Long id;
-	private String reservationName;
-
-	public Reservation() {
-	}
-
-	public Reservation(String reservationName) {
-		this.reservationName = reservationName;
-	}
-
-	@Override
-	public String toString() {
-		return "Reservation{" +
-				"id=" + id +
-				", reservationName='" + reservationName + '\'' +
-				'}';
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getReservationName() {
-		return reservationName;
-	}
-
-	public void setReservationName(String reservationName) {
-		this.reservationName = reservationName;
-	}
-}
