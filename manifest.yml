@@ -1,0 +1,10 @@
+---
+instances: 1
+memory: 512M
+applications:
+  - name: reservation-service	
+    host: wrs
+    services:
+      - womack-redis
+    env:
+      SPRING_PROFILES_ACTIVE: dev
